@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API-Request</title>
+
+    <style>
+        .box {
+            width: 400px;
+            height: 400px;
+            background-color: rgb(209, 79, 101);
+            color: white;
+            border-radius: 2rem;
+            box-shadow: 10px 12px 14px rgb(227, 225, 225);
+        }
+    </style>
+</head>
+<body style="background-color: black; color: white;">
+    <h1><i>API-REQUEST Old Version</i></h1>
+    <hr>
+    <p>0	UNSENT	Client has been created. open() not called yet.</p>
+    <p>1	OPENED	open() has been called.</p>
+    <p>2	HEADERS_RECEIVED	send() has been called, and headers and status are available.</p>
+    <p>3	LOADING	Downloading; responseText holds partial data.</p>
+    <p>4	DONE	The operation is complete.</p>
+    <hr>
+    <div class="card"></div>
+
+</body>
+
+<script>
+    // AJAX REQUEST === old version
+
+    const requestUrl1 = 'https://api.github.com/users/user'
+    const requestUrl = 'https://api.github.com/users/hiteshchoudhary';
+
+    const xhr = new XMLHttpRequest()
+    xhr.open('GET', requestUrl)
+
+    xhr.onreadystatechange = function(){  // jaise hi state change ho rahi hai, at every mon=ment function is ecexecuted.
+        console.log(xhr.readyState); 
+
+        if(xhr.readyState === 4){
+            let data = JSON.parse(this.responseText) 
+            console.log(this.responseText);
+            console.log(data.followers);            
+        }
+    }      
+    xhr.send()
+
+    const card = document.querySelector('.card');
+    let follower = data.followers;
+    let image = data.avatar_url;
+    const body = document.querySelector(body)
+
+    function create(){
+       const Maindiv = document.createElement('div')
+        Maindiv.classList.add('box')
+
+        Maindiv.appendChild(image)
+      
+        Maindiv.appendChild(follower)
+
+       // card.appendChild(Maindiv)
+        body.appendChild(Maindiv)
+    }
+    create()
+    
+
+</script>
